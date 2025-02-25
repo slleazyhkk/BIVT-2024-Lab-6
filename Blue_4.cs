@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp6
+namespace Lab_6
 {
     public class Blue_4
     {
-        public struct Team // структура
+        public struct Team
         {
             private string _name;
             private int[] _scores;
@@ -44,9 +44,6 @@ namespace ConsoleApp6
                 _name = name;
                 _scores = new int[0];
             }
-
-            // методы 
-
             public void PlayMatch(int result)
             {
                 if (_scores == null) return;
@@ -58,7 +55,6 @@ namespace ConsoleApp6
                 newscores[newscores.Length - 1] = result;
                 _scores = newscores;
             }
-
             public void Print()
             {
                 Console.WriteLine(Name + " " + TotalScore);
@@ -71,7 +67,7 @@ namespace ConsoleApp6
             private Team[] _teams;
             private int _cnt;
 
-            // свойства
+            
             public string Name => _name;
             public Team[] Teams
             {
@@ -87,7 +83,6 @@ namespace ConsoleApp6
                 }
             }
 
-            // конструктор
 
             public Group(string name)
             {
@@ -96,7 +91,6 @@ namespace ConsoleApp6
                 _cnt = 0;
             }
 
-            //методы
 
             public void Add(Team team)
             {
