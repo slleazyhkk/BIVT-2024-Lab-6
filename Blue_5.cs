@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp6
+namespace Lab_6
 {
     public class Blue_5
     {
@@ -99,7 +99,7 @@ namespace ConsoleApp6
                 }
             }
 
-            //construct
+            
             public Team(string name)
             {
                 _name= name;
