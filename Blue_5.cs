@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +10,10 @@ namespace Lab_6
     {
         public struct Sportsman
         {
-            public string _name;
-            public string _surname;
-            public int _place;
-            public bool _placeSet;
+            private string _name;
+            private string _surname;
+            private int _place;
+            private bool _placeSet;
 
             public string Name => _name;
             public string Surname => _surname;
@@ -57,7 +57,14 @@ namespace Lab_6
             private int _cnt;
 
             public string Name => _name;
-            public Sportsman[] Sportsmen => _sportsmen;
+            public Sportsman[] Sportsmen
+            {
+                get
+                {
+                    if (_sportsmen == null) return null;
+                    return _sportsmen;
+                }
+            }
             
 
             public int SummaryScore
@@ -94,12 +101,12 @@ namespace Lab_6
                             topplace = sportsman.Place;
                         }
                     }
-                    if (topplace==int.MaxValue) return 0;
+                    if (topplace==int.MaxValue) return 18;
                     return topplace;
                 }
             }
 
-            
+            //construct
             public Team(string name)
             {
                 _name= name;
@@ -109,6 +116,7 @@ namespace Lab_6
 
             public void Add(Sportsman sportsman)
             {
+                if (_sportsmen == null) return; ;
                 if (_cnt < _sportsmen.Length)
                 {
                     _sportsmen[_cnt++] = sportsman;
@@ -118,7 +126,8 @@ namespace Lab_6
 
             public void Add(Sportsman[] newSportsmen)
             {
-                foreach(Sportsman sportsman in newSportsmen)
+                if (_sportsmen == null || _sportsmen.Length == 0) return;
+                foreach (Sportsman sportsman in newSportsmen)
                 {
                     Add(sportsman);
                 }
@@ -126,15 +135,22 @@ namespace Lab_6
 
             public static void Sort(Team[] teams)
             {
-                Array.Sort(teams, (team1, team2) =>
+                if (teams == null || teams.Length == 0) return;
+                for (int i = 0; i < teams.Length; i++)
                 {
-                    int score = team2.SummaryScore.CompareTo(team1.SummaryScore);
-                    if (score != 0) return score;
-                    return team1.TopPlace.CompareTo(team2.TopPlace);
+                    for (int j = 0; j < teams.Length - i - 1; j++)
+                    {
+                        if (teams[j].SummaryScore < teams[j + 1].SummaryScore)
+                        {
+                            (teams[j], teams[j + 1]) = (teams[j + 1], teams[j]);
+                        }
+                        else if (teams[j].SummaryScore == teams[j + 1].SummaryScore)
+                        {
+                            if (teams[j].TopPlace > teams[j + 1].TopPlace)  (teams[j], teams[j + 1]) = (teams[j], teams[j + 1]);
+                        }
+                    }
                 }
-                );
             }
-
             public void Print()
             {
                 Console.WriteLine(_name);
