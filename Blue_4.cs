@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ namespace Lab_6
 {
     public class Blue_4
     {
-        public struct Team
+        public struct Team // структура
         {
             private string _name;
             private int[] _scores;
@@ -20,12 +20,7 @@ namespace Lab_6
                 get
                 {
                     if (_scores == null) return null;
-                    int[] copy = new int[_scores.Length];
-                    for (int i = 0; i < _scores.Length; i++)
-                    {
-                        copy[i] = _scores[i];
-                    }
-                    return copy;
+                    return _scores;
                 }
             }
             public int TotalScore
@@ -44,6 +39,9 @@ namespace Lab_6
                 _name = name;
                 _scores = new int[0];
             }
+
+            // методы 
+
             public void PlayMatch(int result)
             {
                 if (_scores == null) return;
@@ -55,6 +53,7 @@ namespace Lab_6
                 newscores[newscores.Length - 1] = result;
                 _scores = newscores;
             }
+
             public void Print()
             {
                 Console.WriteLine(Name + " " + TotalScore);
@@ -67,22 +66,18 @@ namespace Lab_6
             private Team[] _teams;
             private int _cnt;
 
-            
+            // свойства
             public string Name => _name;
             public Team[] Teams
             {
                 get
                 {
                     if (_teams == null) return null;
-                    Team[] copy = new Team[_teams.Length];
-                    for (int i = 0; i < _teams.Length; i++)
-                    {
-                        copy[i] = _teams[i];
-                    }
-                    return copy;
+                    return _teams;
                 }
             }
 
+            // конструктор
 
             public Group(string name)
             {
@@ -91,6 +86,7 @@ namespace Lab_6
                 _cnt = 0;
             }
 
+            //методы
 
             public void Add(Team team)
             {
