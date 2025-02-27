@@ -101,8 +101,10 @@ namespace Lab_6
             public void Add(Team[] teams)
             {
                 if (_teams == null || teams.Length == 0 || teams == null) return;
-                int i = 0;
-                _teams[_cnt++] = teams[i++];
+                foreach (var team in teams)
+                {
+                    Add(team);
+                }
             }
             public void Sort()
             {
