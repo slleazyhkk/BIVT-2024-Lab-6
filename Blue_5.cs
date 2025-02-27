@@ -18,7 +18,7 @@ namespace Lab_6
             public string Name => _name;
             public string Surname => _surname;
             public int Place => _place;
-            public bool PlaceSet => _placeSet;
+            private bool PlaceSet => _placeSet;
             
             public Sportsman(string name, string surname)
             {
@@ -146,7 +146,7 @@ namespace Lab_6
                         }
                         else if (teams[j].SummaryScore == teams[j + 1].SummaryScore)
                         {
-                            if (teams[j].TopPlace > teams[j + 1].TopPlace)  (teams[j], teams[j + 1]) = (teams[j], teams[j + 1]);
+                            if (teams[j].TopPlace > teams[j + 1].TopPlace)  (teams[j], teams[j + 1]) = (teams[j+1], teams[j]);
                         }
                     }
                 }
